@@ -89,8 +89,8 @@
       left: 0; right: 0;
       z-index: 99;
       height: 34px;
-      background: var(--navy);
-      border-bottom: 1px solid rgba(184,148,85,0.2);
+      background: transparent;
+      border-bottom: none;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -99,26 +99,21 @@
     .values-track {
       display: flex;
       align-items: center;
-      white-space: nowrap;
-      animation: valuesTicker 28s linear infinite;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 60px;
     }
 
     .values-item {
       font-size: 0.58rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--gold);
-      padding: 0 36px;
+      color: var(--navy);
     }
 
     .values-sep {
-      color: rgba(184,148,85,0.35);
+      color: rgba(13,27,42,0.3);
       font-size: 0.7rem;
-    }
-
-    @keyframes valuesTicker {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
     }
 
     /* ── HERO ── */
@@ -676,18 +671,17 @@
   <!-- VALUES TICKER -->
   <div class="values-ticker">
     <div class="values-track">
-      <span class="values-item">Skin in the Game</span><span class="values-sep">·</span>
-      <span class="values-item">Partnership</span><span class="values-sep">·</span>
-      <span class="values-item">Integrity</span><span class="values-sep">·</span>
-      <span class="values-item">Excellence</span><span class="values-sep">·</span>
-      <span class="values-item">Long-Term Thinking</span><span class="values-sep">·</span>
-      <span class="values-item">Stewardship of Capital</span><span class="values-sep">·</span>
-      <span class="values-item">Skin in the Game</span><span class="values-sep">·</span>
-      <span class="values-item">Partnership</span><span class="values-sep">·</span>
-      <span class="values-item">Integrity</span><span class="values-sep">·</span>
-      <span class="values-item">Excellence</span><span class="values-sep">·</span>
-      <span class="values-item">Long-Term Thinking</span><span class="values-sep">·</span>
-      <span class="values-item">Stewardship of Capital</span><span class="values-sep">·</span>
+      <span class="values-item">Skin in the Game</span>
+      <span class="values-sep">·</span>
+      <span class="values-item">Partnership</span>
+      <span class="values-sep">·</span>
+      <span class="values-item">Integrity</span>
+      <span class="values-sep">·</span>
+      <span class="values-item">Excellence</span>
+      <span class="values-sep">·</span>
+      <span class="values-item">Long-Term Thinking</span>
+      <span class="values-sep">·</span>
+      <span class="values-item">Stewardship of Capital</span>
     </div>
   </div>
 
@@ -754,6 +748,7 @@
         <h3>Private Capital</h3>
         <ul>
           <li>Tailored private equity and capital solutions for businesses where potential is being masked by business, industry, or structural complexity</li>
+<li>Investment themes include corporate carve-outs, distressed assets, family-owned businesses, and asset-backed finance; flexible approach to investing across the capital structure</li>
         </ul>
       </div>
     </div>

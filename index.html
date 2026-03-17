@@ -821,10 +821,94 @@
 
     .footer-disclaimer a:hover { color: var(--navy); }
 
+    /* ── HAMBURGER ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 110;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--white);
+      transition: transform 0.3s ease, opacity 0.2s ease;
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 95;
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      padding: 110px 40px 60px;
+      transform: translateX(100%);
+      transition: transform 0.4s ease;
+    }
+
+    .mobile-menu.open { transform: translateX(0); }
+
+    .mobile-menu-links {
+      list-style: none;
+      flex: 1;
+    }
+
+    .mobile-menu-links li {
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .mobile-menu-links a {
+      display: block;
+      padding: 22px 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .mobile-menu-links a:hover { color: var(--gold-lt); }
+
+    .mobile-menu-portal {
+      display: block;
+      text-align: center;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(184,148,85,0.45);
+      padding: 15px;
+      text-decoration: none;
+      margin-top: 44px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .mobile-menu-portal:hover {
+      background: rgba(184,148,85,0.1);
+      border-color: var(--gold);
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 0 28px; }
       .nav-links { display: none; }
+      .nav-portal { display: none; }
+      .nav-hamburger { display: flex; }
 
       .hero { padding: 160px 28px 72px; }
       .hero-rule { display: none; }
@@ -861,7 +945,21 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="#" class="nav-portal" onclick="openPortal(); return false;">Investor Portal</a>
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu-links">
+      <li><a href="#capabilities" onclick="closeMenu()">Capabilities</a></li>
+      <li><a href="#approach" onclick="closeMenu()">Why Auden</a></li>
+      <li><a href="#leadership" onclick="closeMenu()">Leadership</a></li>
+      <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+    </ul>
+    <a href="#" class="mobile-menu-portal" onclick="closeMenu(); openPortal(); return false;">Investor Portal</a>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -1161,6 +1259,28 @@
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.leader-item').forEach(i => i.classList.remove('open'));
       if (!isOpen) item.classList.add('open');
+    }
+
+    // Mobile menu
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const burger = document.getElementById('hamburger');
+      const isOpen = menu.classList.contains('open');
+      if (isOpen) {
+        menu.classList.remove('open');
+        burger.classList.remove('open');
+        document.body.style.overflow = '';
+      } else {
+        menu.classList.add('open');
+        burger.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+      document.body.style.overflow = '';
     }
 
     // Investor portal
